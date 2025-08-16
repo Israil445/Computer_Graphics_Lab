@@ -4,10 +4,12 @@
 using namespace std;
 
 void drawTriangle() {
+    // Coordinates of the triangle vertices
     vector<int> x = {10, 50, 100};
     vector<int> y = {100, 20, 100};
 
     setcolor(GREEN);
+    // Draw triangle edges
     line(x[0], y[0], x[1], y[1]);
     line(x[1], y[1], x[2], y[2]);
     line(x[2], y[2], x[0], y[0]);
@@ -35,9 +37,11 @@ void drawRectangle()
 
 int main()
 {
+    // Initialize graphics mode
     int gd = DETECT, gm = DETECT;
     initgraph(&gd, &gm, "");
 
+    // Sequence of shapes to draw
     string sequence = "RCT";
     for (char x: sequence)
     {
