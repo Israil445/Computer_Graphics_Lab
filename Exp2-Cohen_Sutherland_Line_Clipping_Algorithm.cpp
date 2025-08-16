@@ -67,7 +67,12 @@ int main() {
     setcolor(YELLOW);
     rectangle(x_left, y_bottom, x_right, y_top);
     //rectangle(x_left, y_top, x_right, y_bottom);
-    
+    /*
+        1. rectangle(one-corner, its opossite-corner)
+        2. A rectangle is determined by two opposite corners. 
+        3. The graphics library doesn’t require you to specify top-left first. It automatically finds the rectangle by connecting the min/max of x and y.
+    */
+
     // Draw original line 
     double x1 = 120, y1 = 50, x2 = 350, y2 = 400;
 
