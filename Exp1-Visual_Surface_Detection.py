@@ -1,65 +1,71 @@
-import pygame
-import sys
+import turtle
 
 # -------------------------
 # Constants and Configuration
 # -------------------------
 WIDTH, HEIGHT = 400, 300
-WHITE = (255, 255, 255)
-GREEN = (0, 255, 0)
-BLUE = (0, 0, 255)
-RED = (255, 0, 0)
-
-# Sequence of shapes to draw
 SEQUENCE = "RCT"
 
 # -------------------------
 # Shape Drawing Functions
 # -------------------------
-def draw_triangle(surface):
-    points = [(10, 100), (50, 20), (100, 100)]
-    pygame.draw.polygon(surface, GREEN, points)
+def draw_triangle(t):
+    t.color("green")
+    t.penup()
+    t.goto(10, 100)
+    t.pendown()
+    t.begin_fill()
+    t.goto(50, 20)
+    t.goto(100, 100)
+    t.goto(10, 100)
+    t.end_fill()
 
-def draw_circle(surface):
-    pygame.draw.circle(surface, BLUE, (100, 100), 45)
+def draw_circle(t):
+    t.color("blue")
+    t.penup()
+    t.goto(100, 55)   
+    t.pendown()
+    t.begin_fill()
+    t.circle(45)
+    t.end_fill()
 
-def draw_rectangle(surface):
-    pygame.draw.rect(surface, RED, (100, 100, 80, 80))  # (x, y, width, height)
+def draw_rectangle(t):
+    t.color("red")
+    t.penup()
+    t.goto(100, 100)
+    t.pendown()
+    t.begin_fill()
+    for _ in range(2):
+        t.forward(80)
+        t.right(90)
+        t.forward(80)
+        t.right(90)
+    t.end_fill()
 
 # -------------------------
 # Main Function
 # -------------------------
 def main():
-    # Initialize Pygame
-    pygame.init()
-    screen = pygame.display.set_mode((WIDTH, HEIGHT))
-    pygame.display.set_caption("Draw Shapes")
+    # Setup screen
+    screen = turtle.Screen()
+    screen.setup(WIDTH, HEIGHT)
+    screen.bgcolor("white")
+    screen.title("Draw Shapes with Turtle")
 
-    # Fill background
-    screen.fill(WHITE)
+    t = turtle.Turtle()
+    t.speed(3)
 
     # Draw shapes based on the sequence
     for shape in SEQUENCE:
         if shape == 'C':
-            draw_circle(screen)
+            draw_circle(t)
         elif shape == 'T':
-            draw_triangle(screen)
+            draw_triangle(t)
         else:
-            draw_rectangle(screen)
+            draw_rectangle(t)
 
-    # Update display
-    pygame.display.flip()
-
-    # Main loop to keep window open until closed
-    running = True
-    while running:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT: 
-                running = False
-
-    # Clean up
-    pygame.quit()
-    sys.exit()
+    t.hideturtle()
+    screen.mainloop()
 
 # -------------------------
 # Entry Point
