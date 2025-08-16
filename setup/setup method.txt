@@ -1,0 +1,37 @@
+YouTube tutorial: https://www.youtube.com/watch?v=zpM3CRvw6xU
+
+Setup graphics.h in VS Code (MinGW)
+
+Step 1: Copy the graphics library source files
+
+Go to the graphics.h_solution folder.
+
+Copy the files graphics.c and winbgim.c.
+
+Paste them into the include folder of your MinGW installation.
+Example: C:\MinGW\include\
+
+Step 2: Copy the graphics library binary file
+
+From the same graphics.h_solution folder, copy libbgi.a.
+
+Paste it into the lib folder of your MinGW installation.
+Example: C:\MinGW\lib\
+
+Step 3: Install VS Code extensions
+
+Open VS Code.
+
+Install the Code Runner extension.
+
+Install the Executor Runner extension (optional but recommended for running .exe files easily).
+
+Step 4: Configure Code Runner to compile graphics programs
+
+Open VS Code settings and search for Code Runner: Executor Map.
+
+Edit the C++ (cpp) section and replace it with the following command:
+
+"cpp": "cd $dir && g++ $fileName -o $fileNameWithoutExt -lbgi -lgdi32 -lcomdlg32 -luuid -loleaut32 -lole32 && $dir$fileNameWithoutExt"
+
+This ensures Code Runner compiles your C++ graphics programs with all required libraries.
