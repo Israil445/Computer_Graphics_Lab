@@ -9,7 +9,7 @@ pen = turtle.Turtle()
 pen.speed(1)
 
 # -----------------------
-# Draw Triangle (same coords)
+# Draw Triangle
 # -----------------------
 def drawTriangle():
     x = [10, 50, 100]
