@@ -7,20 +7,20 @@ y_bottom, y_top = -50, 200
 # Region Codes 
 Left, Right, Bottom, Top = 1, 2, 4, 8
 
-# Draw axis
-def draw_axes(t, width, height):
-    t.penup()
-    t.goto(-width / 2, 0)
-    t.pendown()
-    t.goto(width / 2, 0)
-    t.write("X", align="center", font=("Arial", 12, "normal"))
+# Draw axes
+def draw_axes(pen, width, height):
+    pen.penup()
+    pen.goto(-width / 2, 0)
+    pen.pendown()
+    pen.goto(width / 2, 0)
+    pen.write("X", align="center", font=("Arial", 12, "normal"))
 
-    t.penup()
-    t.goto(0, -height / 2)
-    t.pendown()
-    t.goto(0, height / 2)
-    t.write("Y", align="center", font=("Arial", 12, "normal"))
-    t.penup()
+    pen.penup()
+    pen.goto(0, -height / 2)
+    pen.pendown()
+    pen.goto(0, height / 2)
+    pen.write("Y", align="center", font=("Arial", 12, "normal"))
+    pen.penup()
 
 # Function to calculate region code for a point
 def regionCode(x, y):
