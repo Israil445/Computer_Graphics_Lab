@@ -67,7 +67,10 @@ def drawRectangle():
     pen.goto(x1, y2)
     pen.goto(x1, y1)
     pen.end_fill()
-
+    
+#------------------------------
+# Main Function
+#------------------------------
 # Sequence of drawing
 draw_axes()
 sequence = "RCT"
@@ -78,5 +81,6 @@ for shape in sequence:
         drawTriangle()
     else:
         drawRectangle()
-
+        
+pen.hideturtle()
 turtle.done()
