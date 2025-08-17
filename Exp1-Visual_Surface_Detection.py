@@ -3,9 +3,10 @@ import turtle
 # --- Setup ---
 screen = turtle.Screen()
 screen.bgcolor("white")
+screen.title("Visual Surface Detection")
 
 pen = turtle.Turtle()
-pen.speed(3)
+pen.speed(1)
 
 # -----------------------
 # Draw Triangle (same coords)
@@ -29,7 +30,7 @@ def drawTriangle():
 # -----------------------
 def drawCircle():
     pen.penup()
-    pen.goto(100, 100 - 45)   # center (100,100), radius 45
+    pen.goto(100, 100 - 45)  
     pen.pendown()
     pen.fillcolor("blue")
     pen.begin_fill()
