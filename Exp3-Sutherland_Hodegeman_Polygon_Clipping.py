@@ -75,16 +75,16 @@ def draw_axes(pen, width, height):
     pen.write("Y", align="center", font=("Arial", 12, "normal"))
     pen.penup()
     
-def draw_polygon(poly, color):
-    if not poly:
+def draw_polygon(points, color):
+    if not points:
         return
     pen.pencolor(color)
     pen.penup()
-    pen.goto(poly[0].x, poly[0].y)
+    pen.goto(points[0].x, points[0].y)
     pen.pendown()
-    for p in poly[1:]:
+    for p in points[1:]:
         pen.goto(p.x, p.y)
-    pen.goto(poly[0].x, poly[0].y)
+    pen.goto(points[0].x, points[0].y)
 
 def draw_clip_window(pen):
     pen.pencolor("green")
