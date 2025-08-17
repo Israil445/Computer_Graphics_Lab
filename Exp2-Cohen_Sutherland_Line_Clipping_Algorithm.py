@@ -1,12 +1,26 @@
 import turtle
 
-# --- Clipping Window Parameters ---
-x_left, x_right = 150, 450
-y_bottom, y_top = 120, 320
+# Clipping Window Parameters 
+x_left, x_right = -100, 300
+y_bottom, y_top = -50, 200
 
-# --- Region Code Constants ---
+# Region Codes 
 Left, Right, Bottom, Top = 1, 2, 4, 8
 
+# Draw axis
+def draw_axes(t, width, height):
+    t.penup()
+    t.goto(-width / 2, 0)
+    t.pendown()
+    t.goto(width / 2, 0)
+    t.write("X", align="center", font=("Arial", 12, "normal"))
+
+    t.penup()
+    t.goto(0, -height / 2)
+    t.pendown()
+    t.goto(0, height / 2)
+    t.write("Y", align="center", font=("Arial", 12, "normal"))
+    t.penup()
 
 # Function to calculate region code for a point
 def regionCode(x, y):
@@ -29,7 +43,7 @@ def cohenSutherland(x1, y1, x2, y2, pen):
 
     while True:
         if not (code1 | code2):  # Line completely inside
-            drawLine(x1, y1, x2, y2, "white", pen)
+            drawLine(x1, y1, x2, y2, "green", pen)
             return
         elif code1 & code2:  # Line completely outside
             return
@@ -57,7 +71,7 @@ def cohenSutherland(x1, y1, x2, y2, pen):
                 code2 = regionCode(x2, y2)
 
 
-# --- Draw a line helper ---
+# Draw a line helper 
 def drawLine(x1, y1, x2, y2, color, pen):
     pen.penup()
     pen.goto(x1, y1)
@@ -65,28 +79,36 @@ def drawLine(x1, y1, x2, y2, color, pen):
     pen.pencolor(color)
     pen.goto(x2, y2)
 
-
-# -----------------------
-# Main Program
-# -----------------------
+#------------------------------
+# Main Function
+#------------------------------
+# screen stup
+WIDTH, HEIGHT = 800, 600
 screen = turtle.Screen()
-screen.bgcolor("black")
+screen.title("Cohen-Sutherland Line Clipping")
+screen.setup(width=WIDTH, height=HEIGHT)
+screen.bgcolor("white")
 
+# pen setup
 pen = turtle.Turtle()
-pen.hideturtle()
-pen.speed(3)
+pen.speed(2)
+pen.pensize(2)
+pen.pencolor("Black")
+draw_axes(pen, WIDTH, HEIGHT)
 
-# Draw clipping window in yellow
-drawLine(x_left, y_bottom, x_right, y_bottom, "yellow", pen)
-drawLine(x_right, y_bottom, x_right, y_top, "yellow", pen)
-drawLine(x_right, y_top, x_left, y_top, "yellow", pen)
-drawLine(x_left, y_top, x_left, y_bottom, "yellow", pen)
 
-# Original line (yellow)
-x1, y1, x2, y2 = 120, 50, 350, 400
-drawLine(x1, y1, x2, y2, "yellow", pen)
+# Draw the clipping rectangle
+drawLine(x_left, y_bottom, x_right, y_bottom, "green", pen)
+drawLine(x_right, y_bottom, x_right, y_top, "green", pen)
+drawLine(x_right, y_top, x_left, y_top, "green", pen)
+drawLine(x_left, y_top, x_left, y_bottom, "green", pen)
 
-# Clipped line (white)
+# Original line
+x1, y1, x2, y2 = -180, -30, 300, 300
+drawLine(x1, y1, x2, y2, "red", pen)
+
+# Clipped line 
 cohenSutherland(x1, y1, x2, y2, pen)
 
+pen.hideturtle()
 turtle.done()
